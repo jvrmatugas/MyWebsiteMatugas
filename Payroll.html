@@ -1,289 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Payroll Program</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment #3 - Factorial & Natural Numbers</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Marcellus&display=swap" rel="stylesheet">
+    header {
+      margin-top: 50px;
+    }
 
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    background: linear-gradient(#a8d8ea, #fefbd8);
-    background-attachment: fixed;
-    color: #2f3e46;
-    text-align: center;
-    overflow-x: hidden;
-  }
+    h1 {
+      color: #003366;
+      font-size: 2em;
+    }
 
-  h1 {
-    font-family: 'Marcellus', serif;
-    font-size: 2.6em;
-    color: #356859;
-    margin: 40px 0 20px;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-  }
+    h2 {
+      color: #005580;
+      font-weight: normal;
+      margin-bottom: 40px;
+    }
 
-  /* Cloud animation */
-  .cloud {
-    position: absolute;
-    top: 20%;
-    left: -200px;
-    width: 200px;
-    height: 100px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 100px;
-    animation: float 60s linear infinite;
-    filter: blur(2px);
-  }
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    width: 100px; height: 80px;
-    top: -20px; left: 30px;
-    border-radius: 50%;
-  }
-  .cloud::after {
-    width: 120px; height: 90px;
-    top: 10px; left: 90px;
-  }
-  @keyframes float {
-    from {transform: translateX(0);}
-    to {transform: translateX(120vw);}
-  }
+    .btn {
+      display: inline-block;
+      background-color: #005580;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-top: 30px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
 
-  /* Input section */
-  .input-controls {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 90%;
-    max-width: 500px;
-    margin: 0 auto 40px;
-  }
-  .input-controls label {
-    display: inline-block;
-    width: 140px;
-    text-align: right;
-    margin-right: 10px;
-    color: #52796f;
-  }
-  .input-controls input {
-    padding: 6px;
-    border-radius: 8px;
-    border: 1px solid #84a98c;
-    width: 180px;
-    margin-bottom: 10px;
-  }
-  .input-controls button {
-    background-color: #84a98c;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 14px;
-    margin: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .input-controls button:hover {
-    background-color: #52796f;
-    transform: translateY(-3px);
-  }
-
-  /* Table styling */
-  table {
-    border-collapse: collapse;
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto 40px;
-    background-color: rgba(255,255,255,0.9);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.1);
-  }
-  th, td {
-    padding: 10px;
-    border: 1px solid #bcd9d1;
-  }
-  thead {
-    background-color: #84a98c;
-    color: white;
-  }
-  tfoot {
-    background-color: #d8f3dc;
-    font-weight: bold;
-  }
-  td.ndata {
-    text-align: right;
-  }
-  #gross-total, #deduct-total, #net-total {
-    color: #d62828;
-    font-weight: bold;
-  }
-
-  /* Links */
-  .links-container {
-    margin-bottom: 40px;
-  }
-  .links-container a {
-    text-decoration: none;
-    background-color: #84a98c;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-  }
-  .links-container a:hover {
-    background-color: #52796f;
-    transform: translateY(-3px);
-  }
-
-  footer {
-    font-size: 0.9em;
-    color: #555;
-    margin-bottom: 30px;
-  }
-</style>
+    .btn:hover {
+      background-color: #0077aa;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Gentle clouds -->
-  <div class="cloud" style="top:15%;animation-delay:0s;"></div>
-  <div class="cloud" style="top:35%;animation-delay:20s;opacity:0.9;"></div>
-  <div class="cloud" style="top:50%;animation-delay:40s;opacity:0.8;"></div>
+  <header>
+    <h1>Assignment #3 - Factorial & Natural Numbers</h1>
+    <h2>by Justine Matugas</h2>
+  </header>
 
-  <h1>The Payroll Program</h1>
+  <!-- Your factorial, sum, and average JS code here -->
 
-  <div class="input-controls">
-    <label for="name">Employee Name:</label>
-    <input id="name" name="name" type="text" value="New Employee"><br>
-    <label for="days_worked">Days Worked:</label>
-    <input id="days_worked" name="days_worked" type="number" value="5"><br>
-    <label for="daily_rate">Daily Rate:</label>
-    <input id="daily_rate" name="daily_rate" type="number" value="100.00"><br>
-    <label for="deduct">Deduction Amount:</label>
-    <input id="deduct" name="deduct" type="number" value="50.00"><br>
-    <button onclick="addEmployee()">+ Add Employee</button>
-    <button onclick="deleteEmployee()">- Delete by No.</button>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Emp. No.</th>
-        <th>Employee Name</th>
-        <th>Days Worked</th>
-        <th>Daily Rate</th>
-        <th>Gross Pay</th>
-        <th>Deductions</th>
-        <th>Net Pay</th>
-      </tr>
-    </thead>
-    <tbody id="payroll-body">
-      <tr>
-        <td class="ndata">1</td>
-        <td>John Van Neumann</td>
-        <td class="ndata">3</td>
-        <td class="ndata">500.00</td>
-        <td class="ndata">1500.00</td>
-        <td class="ndata">300</td>
-        <td class="ndata">1200</td>
-      </tr>
-      <tr>
-        <td class="ndata">2</td>
-        <td>Charles W. Babbage</td>
-        <td class="ndata">4</td>
-        <td class="ndata">500.00</td>
-        <td class="ndata">2000.00</td>
-        <td class="ndata">500</td>
-        <td class="ndata">1500</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td>Total</td><td></td><td></td><td></td>
-        <td id="gross-total" class="ndata">3500.00</td>
-        <td id="deduct-total" class="ndata">800.00</td>
-        <td id="net-total" class="ndata">2700.00</td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <div class="links-container">
-    <a href="Homepage2 j.html">Back to Home Page</a>
-  </div>
-
-  <script>
-    function getNumberValue(id) {
-      const value = parseFloat(document.getElementById(id).value);
-      return isNaN(value) ? 0 : value;
-    }
-
-    function updateTotals() {
-      const tableBody = document.getElementById('payroll-body');
-      const rows = tableBody.getElementsByTagName('tr');
-
-      let totalGross = 0, totalDeductions = 0, totalNet = 0;
-      for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].getElementsByTagName('td');
-        totalGross += parseFloat(cells[4].textContent) || 0;
-        totalDeductions += parseFloat(cells[5].textContent) || 0;
-        totalNet += parseFloat(cells[6].textContent) || 0;
-      }
-      document.getElementById('gross-total').textContent = totalGross.toFixed(2);
-      document.getElementById('deduct-total').textContent = totalDeductions.toFixed(2);
-      document.getElementById('net-total').textContent = totalNet.toFixed(2);
-    }
-
-    function addEmployee() {
-      const name = document.getElementById('name').value;
-      const daysWorked = getNumberValue('days_worked');
-      const dailyRate = getNumberValue('daily_rate');
-      const deduction = getNumberValue('deduct');
-      const grossPay = daysWorked * dailyRate;
-      const netPay = grossPay - deduction;
-
-      const tableBody = document.getElementById('payroll-body');
-      const nextEmpNo = tableBody.getElementsByTagName('tr').length + 1;
-      const newRow = tableBody.insertRow();
-      const values = [
-        nextEmpNo,
-        name,
-        daysWorked.toFixed(0),
-        dailyRate.toFixed(2),
-        grossPay.toFixed(2),
-        deduction.toFixed(2),
-        netPay.toFixed(2)
-      ];
-      for (let i = 0; i < values.length; i++) {
-        const newCell = newRow.insertCell(i);
-        newCell.textContent = values[i];
-        if (i !== 1) newCell.classList.add('ndata');
-      }
-      updateTotals();
-    }
-
-    function deleteEmployee() {
-      const lineNumber = parseInt(prompt("Enter the Employee No. to delete:"), 10);
-      const tableBody = document.getElementById('payroll-body');
-      const rows = tableBody.getElementsByTagName('tr');
-      const rowIndex = lineNumber - 1;
-      if (rowIndex >= 0 && rowIndex < rows.length) {
-        tableBody.deleteRow(rowIndex);
-        for (let i = 0; i < rows.length; i++) {
-          rows[i].cells[0].textContent = i + 1;
-        }
-        updateTotals();
-      }
-    }
-
-    updateTotals();
-  </script>
+  <a href="index.html" class="btn">← Back to Home</a>
 </body>
 </html>
+
