@@ -1,169 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Income Tax Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Marcellus&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    background: linear-gradient(#a8d8ea, #fefbd8);
-    background-attachment: fixed;
-    color: #2f3e46;
-    text-align: center;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment #2 - Income Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-  .cloud {
-    position: absolute;
-    top: 20%;
-    left: -200px;
-    width: 200px;
-    height: 100px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 100px;
-    animation: float 60s linear infinite;
-    filter: blur(2px);
-  }
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255,255,255,0.8);
-    width: 100px; height: 80px;
-    top: -20px; left: 30px;
-    border-radius: 50%;
-  }
-  .cloud::after {
-    width: 120px; height: 90px;
-    top: 10px; left: 90px;
-  }
-  @keyframes float {
-    from {transform: translateX(0);} 
-    to {transform: translateX(120vw);} 
-  }
+    header {
+      margin-top: 50px;
+    }
 
-  h1 {
-    font-family: 'Marcellus', serif;
-    font-size: 3em;
-    color: #356859;
-    margin-top: 80px;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
-  }
+    h1 {
+      color: #003366;
+      font-size: 2em;
+    }
 
-  .calculator-box {
-    background-color: #ffffffcc;
-    margin: 40px auto;
-    padding: 25px;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
+    h2 {
+      color: #005580;
+      font-weight: normal;
+      margin-bottom: 40px;
+    }
 
-  label {
-    font-weight: 600;
-    color: #356859;
-  }
+    .btn {
+      display: inline-block;
+      background-color: #005580;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-top: 30px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
 
-  input {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #84a98c;
-    width: 80%;
-    margin-top: 10px;
-    font-size: 1em;
-  }
-
-  button {
-    margin: 10px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
-    background-color: #84a98c;
-    color: #fff;
-    font-size: 1em;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  button:hover {
-    background-color: #52796f;
-    transform: translateY(-3px);
-  }
-
-  .links-container a {
-    text-decoration: none;
-    background-color: #84a98c;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-  }
-
-  .links-container a:hover {
-    background-color: #52796f;
-    transform: translateY(-4px);
-  }
-</style>
+    .btn:hover {
+      background-color: #0077aa;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-  <div class="cloud" style="top:15%;animation-delay:0s;"></div>
-  <div class="cloud" style="top:35%;animation-delay:20s;opacity:0.9;"></div>
-  <div class="cloud" style="top:50%;animation-delay:40s;opacity:0.8;"></div>
+  <header>
+    <h1>Assignment #2 - Income Tax Calculator</h1>
+    <h2>by Justine Matugas</h2>
+  </header>
 
-  <h1>Income Tax Calculator</h1>
+  <!-- Your income tax calculator code goes here -->
 
-  <div class="calculator-box">
-    <label for="it">Input Taxable Income:</label><br>
-    <input id="it" name="it" type="number"><br>
-
-    <button onclick="computeIncomeTax()">Compute Income Tax</button>
-    <button onclick="clearvaluesIncometax()">Clear Values</button><br>
-
-    <label for="iT" id="IT">Income Tax:</label><br>
-    <input id="iT" name="iT" type="number" readonly>
-  </div>
-
-  <div class="links-container">
-    <a href="index.html">Back to Home Page</a>
-  </div>
-
-<script>
-function computeIncomeTax() {
-  var tax_income, rate, income_tax;
-  tax_income = document.getElementById("it").value*1;
-
-  if (tax_income > 8000000) {
-      rate = (tax_income - 8000000) * 0.35;
-      income_tax = 2410000 + rate;
-  } else if (tax_income > 2000000) {
-      rate = (tax_income - 2000000) * 0.32;
-      income_tax = 490000 + rate;
-  } else if (tax_income > 800000) {
-      rate = (tax_income - 800000) * 0.30;
-      income_tax = 130000 + rate;
-  } else if (tax_income > 400000) {
-      rate = (tax_income - 400000) * 0.25;
-      income_tax = 30000 + rate;
-  } else if (tax_income > 250000) {
-      rate = (tax_income - 250000) * 0.20;
-      income_tax = rate;
-  } else {
-      income_tax = 0;
-  }
-  document.getElementById("IT").innerHTML='Income Tax:';
-  document.getElementById("iT").value = income_tax.toFixed(2);
-}
-
-function clearvaluesIncometax() {
-   document.getElementById("it").value='';
-   document.getElementById("IT").innerHTML='Income Tax:';
-   document.getElementById("iT").value='';
-}
-</script>
+  <a href="index.html" class="btn">← Back to Home</a>
 </body>
 </html>
