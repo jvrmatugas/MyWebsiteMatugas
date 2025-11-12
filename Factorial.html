@@ -1,58 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment #3 - Factorial & Natural Numbers</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 3</title>
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
-
-    header {
-      margin-top: 50px;
-    }
-
     h1 {
-      color: #003366;
-      font-size: 2em;
+      text-align: center;
+      margin-bottom: 30px;
     }
-
-    h2 {
-      color: #005580;
-      font-weight: normal;
-      margin-bottom: 40px;
+    .container {
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .btn {
-      display: inline-block;
-      background-color: #005580;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 30px;
-      transition: background-color 0.3s, transform 0.2s;
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
     }
-
-    .btn:hover {
-      background-color: #0077aa;
-      transform: scale(1.05);
+    button {
+      padding: 8px 15px;
+      margin-top: 10px;
+    }
+    .output {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eaeaea;
+      border-radius: 4px;
+      min-height: 30px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Assignment #3 - Factorial & Natural Numbers</h1>
-    <h2>by Justine Matugas</h2>
-  </header>
+  <div class="container">
+    <h1>Assignment 3# Matugas</h1>
 
-  <!-- Your factorial, sum, and average JS code here -->
+    <h3>Factorial (While Loop)</h3>
+    <input type="number" id="factInput" placeholder="Enter a number" />
+    <button onclick="calcFactorial()">Calculate Factorial</button>
+    <div class="output" id="factOutput"></div>
 
-  <a href="index.html" class="btn">← Back to Home</a>
+    <h3>Sum of First N Natural Numbers (Do-While Loop)</h3>
+    <input type="number" id="sumInput" placeholder="Enter a number" />
+    <button onclick="calcSum()">Calculate Sum</button>
+    <div class="output" id="sumOutput"></div>
+
+    <h3>Average of First N Natural Numbers (For Loop)</h3>
+    <input type="number" id="avgInput" placeholder="Enter a number" />
+    <button onclick="calcAverage()">Calculate Average</button>
+    <div class="output" id="avgOutput"></div>
+  </div>
+
+  <script>
+    function calcFactorial() {
+      let n = parseInt(document.getElementById("factInput").value);
+      let result = 1;
+      let i = 1;
+      while (i <= n) {
+        result *= i;
+        i++;
+      }
+      document.getElementById("factOutput").innerText = "Factorial of " + n + " = " + result;
+    }
+
+    function calcSum() {
+      let n = parseInt(document.getElementById("sumInput").value);
+      let i = 1;
+      let sum = 0;
+      do {
+        sum += i;
+        i++;
+      } while (i <= n);
+      document.getElementById("sumOutput").innerText = "Sum = " + sum;
+    }
+
+    function calcAverage() {
+      let n = parseInt(document.getElementById("avgInput").value);
+      let sum = 0;
+      for (let i = 1; i <= n; i++) {
+        sum += i;
+      }
+      let average = sum / n;
+      document.getElementById("avgOutput").innerText = "Average = " + average;
+    }
+  </script>
 </body>
 </html>
