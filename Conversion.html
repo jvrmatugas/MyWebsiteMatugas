@@ -1,59 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment #1 - Conversion</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 1# Matugas - Conversions</title>
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
-
-    header {
-      margin-top: 50px;
+    .container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     h1 {
-      color: #003366;
-      font-size: 2em;
+      text-align: center;
+      margin-bottom: 25px;
     }
-
-    h2 {
-      color: #005580;
-      font-weight: normal;
-      margin-bottom: 40px;
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
     }
-
-    .btn {
-      display: inline-block;
-      background-color: #005580;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 30px;
-      transition: background-color 0.3s, transform 0.2s;
+    button {
+      padding: 8px 15px;
+      margin-top: 10px;
     }
-
-    .btn:hover {
-      background-color: #0077aa;
-      transform: scale(1.05);
+    .output {
+      background: #eaeaea;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 15px;
+      min-height: 30px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Assignment #1 - Conversion</h1>
-    <h2>by Justine Matugas</h2>
-  </header>
+  <div class="container">
+    <h1>Assignment 1# Matugas<br>Unit Conversions</h1>
 
-  <!-- Your existing conversion calculator content goes here -->
+    <h3>Celsius to Fahrenheit</h3>
+    <input type="number" id="celsius" placeholder="Enter Celsius" />
+    <button onclick="cToF()">Convert</button>
+    <div class="output" id="cToFOut"></div>
 
-  <a href="index.html" class="btn">← Back to Home</a>
+    <h3>Fahrenheit to Celsius</h3>
+    <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" />
+    <button onclick="fToC()">Convert</button>
+    <div class="output" id="fToCOut"></div>
+
+    <h3>Meters to Feet</h3>
+    <input type="number" id="meters" placeholder="Enter Meters" />
+    <button onclick="mToF()">Convert</button>
+    <div class="output" id="mToFOut"></div>
+
+    <h3>Feet to Meters</h3>
+    <input type="number" id="feet" placeholder="Enter Feet" />
+    <button onclick="fToM()">Convert</button>
+    <div class="output" id="fToMOut"></div>
+  </div>
+
+  <script>
+    function cToF() {
+      let c = parseFloat(document.getElementById("celsius").value);
+      let f = (c * 9/5) + 32;
+      document.getElementById("cToFOut").innerText = f.toFixed(2) + " °F";
+    }
+
+    function fToC() {
+      let f = parseFloat(document.getElementById("fahrenheit").value);
+      let c = (f - 32) * 5/9;
+      document.getElementById("fToCOut").innerText = c.toFixed(2) + " °C";
+    }
+
+    function mToF() {
+      let m = parseFloat(document.getElementById("meters").value);
+      let ft = m * 3.28084;
+      document.getElementById("mToFOut").innerText = ft.toFixed(2) + " ft";
+    }
+
+    function fToM() {
+      let ft = parseFloat(document.getElementById("feet").value);
+      let m = ft / 3.28084;
+      document.getElementById("fToMOut").innerText = m.toFixed(2) + " m";
+    }
+  </script>
 </body>
 </html>
 
