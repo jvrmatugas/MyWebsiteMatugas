@@ -1,58 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment #3 - Factorial & Natural Numbers</title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factorial & Natural Numbers</title>
 
-    header {
-      margin-top: 50px;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Marcellus&display=swap" rel="stylesheet">
 
-    h1 {
-      color: #003366;
-      font-size: 2em;
-    }
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(#a8d8ea, #fefbd8);
+    background-attachment: fixed;
+    color: #2f3e46;
+    text-align: center;
+    overflow-x: hidden;
+  }
 
-    h2 {
-      color: #005580;
-      font-weight: normal;
-      margin-bottom: 40px;
-    }
+  /* Floating clouds */
+  .cloud {
+    position: absolute;
+    top: 20%;
+    left: -200px;
+    width: 200px;
+    height: 100px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 100px;
+    animation: float 60s linear infinite;
+    filter: blur(2px);
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+  }
+  .cloud::before {
+    width: 100px; height: 80px;
+    top: -20px; left: 30px;
+  }
+  .cloud::after {
+    width: 120px; height: 90px;
+    top: 10px; left: 90px;
+  }
+  @keyframes float {
+    from { transform: translateX(0); }
+    to { transform: translateX(120vw); }
+  }
 
-    .btn {
-      display: inline-block;
-      background-color: #005580;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 30px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
+  /* Title */
+  h1 {
+    font-family: 'Marcellus', serif;
+    font-size: 2.5em;
+    color: #356859;
+    margin-top: 80px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+  }
 
-    .btn:hover {
-      background-color: #0077aa;
-      transform: scale(1.05);
-    }
-  </style>
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    width: 320px;
+    padding: 25px;
+    text-align: center;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .card h2 {
+    font-family: 'Marcellus', serif;
+    color: #52796f;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 80%;
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #b0bec5;
+    border-radius: 8px;
+    font-size: 1em;
+    text-align: center;
+  }
+
+  button {
+    background-color: #84a98c;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    margin: 6px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+
+  button:hover {
+    background-color: #52796f;
+    transform: translateY(-3px);
+  }
+
+  .back-home {
+    display: inline-block;
+    margin: 30px auto 60px;
+    text-decoration: none;
+    background-color: #84a98c;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .back-home:hover {
+    background-color: #52796f;
+    transform: translateY(-4px);
+  }
+
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Assignment #3 - Factorial & Natural Numbers</h1>
-    <h2>by Justine Matugas</h2>
-  </header>
+  <!-- Floating clouds -->
+  <div class="cloud" style="top:10%;animation-delay:0s;"></div>
+  <div class="cloud" style="top:30%;animation-delay:20s;opacity:0.9;"></div>
+  <div class="cloud" style="top:50%;animation-delay:40s;opacity:0.8;"></div>
 
-  <!-- Your factorial, sum, and average JS code here -->
+  <h1>Factorial & Natural Numbers ➗➕∑</h1>
 
-  <a href="index.html" class="btn">← Back to Home</a>
+  <div class="card-container">
+    <!-- Factorial -->
+    <div class="card">
+      <div class="icon">➗</div>
+      <h2>Factorial (While Loop)</h2>
+      <label>Enter a number:</label><br>
+      <input id="n1" type="number"><br>
+      <button onclick="computeFactorial()">Compute</button>
+      <button onclick="clearFactorial()">Clear</button><br>
+      <label>Factorial:</label><br>
+      <input id="factorial" type="number" readonly>
+    </div>
+
+    <!-- Sum -->
+    <div class="card">
+      <div class="icon">➕</div>
+      <h2>Sum (Do While Loop)</h2>
+      <label>Enter a number:</label><br>
+      <input id="n2" type="number"><br>
+      <button onclick="computeSum()">Compute</button>
+      <button onclick="clearSum()">Clear</button><br>
+      <label>Sum:</label><br>
+      <input id="sum" type="number" readonly>
+    </div>
+
+    <!-- Average -->
+    <div class="card">
+      <div class="icon">∑</div>
+      <h2>Average (For Loop)</h2>
+      <label>Enter a number:</label><br>
+      <input id="n3" type="number"><br>
+      <button onclick="computeAverage()">Compute</button>
+      <button onclick="clearAverage()">Clear</button><br>
+      <label>Average:</label><br>
+      <input id="average" type="number" readonly>
+    </div>
+  </div>
+
+  <a class="back-home" href="index.html">⬅ Back to Home Page</a>
+
+  <script>
+    function computeFactorial() {
+      let i = document.getElementById("n1").value * 1;
+      let result = 1;
+      while (i > 1) {
+        result *= i;
+        i--;
+      }
+      document.getElementById("factorial").value = result;
+    }
+
+    function computeSum() {
+      let j = document.getElementById("n2").value * 1;
+      let result = 0;
+      let a = 1;
+      do {
+        result += a;
+        a++;
+      } while (a <= j);
+      document.getElementById("sum").value = result;
+    }
+
+    function computeAverage() {
+      let k = document.getElementById("n3").value * 1;
+      let result = 0;
+      for (let b = 1; b <= k; b++) {
+        result += b;
+      }
+      let average = result / k;
+      document.getElementById("average").value = average.toFixed(2);
+    }
+
+    function clearFactorial() {
+      document.getElementById("n1").value = '';
+      document.getElementById("factorial").value = '';
+    }
+    function clearSum() {
+      document.getElementById("n2").value = '';
+      document.getElementById("sum").value = '';
+    }
+    function clearAverage() {
+      document.getElementById("n3").value = '';
+      document.getElementById("average").value = '';
+    }
+  </script>
 </body>
 </html>
