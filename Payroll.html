@@ -1,59 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment #3 - Factorial & Natural Numbers</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 4# Matugas - Simple Payroll</title>
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(to bottom right, #b0d8f0, #f4f9ff);
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
-
-    header {
-      margin-top: 50px;
+    .container {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
     h1 {
-      color: #003366;
-      font-size: 2em;
+      text-align: center;
+      margin-bottom: 25px;
     }
-
-    h2 {
-      color: #005580;
-      font-weight: normal;
-      margin-bottom: 40px;
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
     }
-
-    .btn {
-      display: inline-block;
-      background-color: #005580;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 30px;
-      transition: background-color 0.3s, transform 0.2s;
+    button {
+      padding: 8px 15px;
+      margin-top: 10px;
     }
-
-    .btn:hover {
-      background-color: #0077aa;
-      transform: scale(1.05);
+    .output {
+      background: #eaeaea;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 15px;
+      min-height: 30px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Assignment #3 - Factorial & Natural Numbers</h1>
-    <h2>by Justine Matugas</h2>
-  </header>
+  <div class="container">
+    <h1>Assignment 4# Matugas<br>Simple Payroll</h1>
 
-  <!-- Your factorial, sum, and average JS code here -->
+    <label>Employee Name:</label>
+    <input type="text" id="empName" placeholder="Enter Employee Name" />
 
-  <a href="index.html" class="btn">← Back to Home</a>
+    <label>Rate per Hour:</label>
+    <input type="number" id="rate" placeholder="Enter Rate per Hour" />
+
+    <label>Hours Worked:</label>
+    <input type="number" id="hours" placeholder="Enter Hours Worked" />
+
+    <button onclick="computePayroll()">Compute Payroll</button>
+
+    <div class="output" id="payOutput">Payroll result will appear here</div>
+  </div>
+
+  <script>
+    function computePayroll() {
+      let name = document.getElementById("empName").value;
+      let rate = parseFloat(document.getElementById("rate").value);
+      let hours = parseFloat(document.getElementById("hours").value);
+
+      let gross = rate * hours;
+      let tax = gross * 0.10; // 10% tax
+      let net = gross - tax;
+
+      document.getElementById("payOutput").innerText =
+        "Employee: " + name +
+        "\nGross Pay: ₱" + gross.toFixed(2) +
+        "\nTax (10%): ₱" + tax.toFixed(2) +
+        "\nNet Pay: ₱" + net.toFixed(2);
+    }
+  </script>
 </body>
 </html>
+
 
